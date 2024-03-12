@@ -5,6 +5,7 @@ import {View, StatusBar, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AbsenceForm from './AbsenceForm';
+import VillaSignUp from './VillaSignUp';
 
 
 
@@ -21,8 +22,8 @@ const MainScreen = ({ navigation }) => {
   const FormList = () => {
     return (
       <View style={styles.buttonContainer}> 
-        <View style={styles.buttonRow}> 
 
+        <View style={styles.buttonRow}> 
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
             <Text> Absence Form </Text>
           </TouchableOpacity>
@@ -31,7 +32,7 @@ const MainScreen = ({ navigation }) => {
 
 
         <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Villa-Sign-Up-Form')}>
             <Text> Villa House Sign-up </Text>
           </TouchableOpacity>
         </View>
@@ -117,6 +118,7 @@ const styles = StyleSheet.create({
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    
    
   },
   button: {
@@ -138,6 +140,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="Absence-Form" component={AbsenceForm} />
+        <Stack.Screen name="Villa-Sign-Up-Form" component={VillaSignUp} />
       </Stack.Navigator>
     </NavigationContainer>
   );

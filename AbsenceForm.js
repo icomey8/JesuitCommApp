@@ -42,7 +42,8 @@ const AbsenceForm = ({ navigation }) => {
           render={() => <TextInput placeholder={"destination (address, city, state)"} />}
           /> 
           
-         <TextInput />
+          <button type="submit">Submit</button>
+        
         </View>
       );
     };
@@ -54,7 +55,7 @@ const AbsenceForm = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#1ff',
       alignItems: 'center',
       justifyContent: 'center',
     },
