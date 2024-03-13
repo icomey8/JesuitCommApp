@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AbsenceForm from './AbsenceForm';
 import VillaSignUp from './VillaSignUp';
+import CheckRequest from './CheckRequest';
 
 
 
@@ -69,7 +70,7 @@ const MainScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Check-Request-Form')}>
             <Text> Check Request </Text>
           </TouchableOpacity>
         </View>
@@ -141,6 +142,7 @@ export default function App() {
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="Absence-Form" component={AbsenceForm} />
         <Stack.Screen name="Villa-Sign-Up-Form" component={VillaSignUp} />
+        <Stack.Screen name="Check-Request-Form" component={CheckRequest} />
       </Stack.Navigator>
     </NavigationContainer>
   );

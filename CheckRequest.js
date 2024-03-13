@@ -4,7 +4,7 @@ import { Text, View, StyleSheet, Button, TextInput } from 'react-native';
 import Constants from 'expo-constants';
 
 
-const App = () => {
+const CheckRequestForm = () => {
     const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
         defaultValues: {
           firstName: '',
@@ -22,12 +22,12 @@ const App = () => {
         };
       };
       
-    console.log('errors', errors);
+      console.log('errors', errors);
 
 
-return (
+    return (
     <View style={styles.container}>
-      <Text style={styles.label}>first Name</Text>
+      <Text style={styles.label}>Full Name</Text>
       <Controller
         control={control}
         render={({field: { onChange, onBlur, value }}) => (
@@ -98,6 +98,5 @@ const styles = StyleSheet.create({
     },
   });
 
-
-export default App;
+export default CheckRequestForm;
 

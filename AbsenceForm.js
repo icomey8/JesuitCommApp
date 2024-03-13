@@ -1,51 +1,76 @@
 // imports
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import { TextInput } from 'react-native-gesture-handler';
+import { Text, View, StyleSheet, Button, TextInput } from 'react-native';
+import Constants from 'expo-constants';
 
 
 
 // absence form
 const AbsenceForm = ({ navigation }) => {
-    const navigateToHome = () => {
-        navigation.navigate('Home');
+    const { register, setValue, handleSubmit, control, reset, formState: { errors } } = useForm({
+        defaultValues: {
+          firstName: '',
+          lastName: ''
+        }
+      });
+
+    const onSubmit = data => {
+        console.log(data);
       };
 
-    const { handleSubmit, control } = useForm();
+    const onChange = arg => {
+        return {
+          value: arg.nativeEvent.text,
+        };
+      };
+      
+    console.log('errors', errors);
+
+
     
-      return (
+    return (
         <View style={styles.container}>
-          <Text>Welcome to the Absence Form Page! test test</Text>
-
-          <Controller style={styles.formField}
-          control={control}
-          name="firstName"
-          render={() => <TextInput placeholder={"first name"} />}
-          /> 
-          
-          <Controller style={styles.formField}
-          control={control}
-          name="lastName"
-          render={() => <TextInput placeholder={"last name"} />}
-          /> 
-          
-          <Controller style={styles.formField}
-          control={control}
-          name="purpose"
-          render={() => <TextInput placeholder={"purpose of absence"} />}
-          /> 
-
-          <Controller style={styles.formField}
-          control={control}
-          name="destination"
-          render={() => <TextInput placeholder={"destination (address, city, state)"} />}
-          /> 
-          
-          <button type="submit">Submit</button>
-        
+          <Text style={styles.label}>first Name</Text>
+          <Controller
+            control={control}
+            render={({field: { onChange, onBlur, value }}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                value={value}
+              />
+            )}
+            name="firstName"
+            rules={{ required: true }}
+          />
+          <Text style={styles.label}>first name</Text>
+          <Controller
+            control={control}
+            render={({field: { onChange, onBlur, value }}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                value={value}
+              />
+            )}
+            name="lastName"
+            rules={{ required: true }}
+          />
+    
+    
+          <View style={styles.button}>
+            <Button
+              style={styles.buttonInner}
+              color
+              title="Button"
+              onPress={handleSubmit(onSubmit)}
+            />
+          </View>
         </View>
-      );
+        )
     };
     // don't forget return to home page button above
     
@@ -53,25 +78,32 @@ const AbsenceForm = ({ navigation }) => {
 
 // stylesheet 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#1ff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    formField: {
-        borderRadius: 5,
-        backgroundColor: '#93282a',
+    label: {
+      color: 'black',
+      margin: 20,
+      marginLeft: 0,
     },
     button: {
-      marginTop: 20,
-      padding: 10,
-      borderRadius: 5,
+      marginTop: 40,
+      color: 'white',
+      height: 40,
       backgroundColor: '#93282a',
+      borderRadius: 4,
     },
-    Text:{
-      color: 'black',
-    }
+    container: {
+      flex: 1,
+      justifyContent: '',
+      paddingTop: Constants.statusBarHeight,
+      padding: 8,
+      backgroundColor: '#white',
+    },
+    input: {
+      backgroundColor: 'white',
+      borderColor: '#f0f',
+      height: 40,
+      padding: 10,
+      borderRadius: 4,
+    },
   });
 
 
