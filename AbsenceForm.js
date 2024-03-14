@@ -31,6 +31,8 @@ const AbsenceForm = ({ navigation }) => {
       
     console.log('errors', errors);
 
+    /* NOTE - I THINK WE MAY HAVE TO SWITCH TO A DIFFERENT LIBRARY FOR THE DATE PICKER, ONE
+    THAT IS MORE WIDELY USED / HAS MORE HELP AND RESOURCES */
 
 // For Date Picker 
     const [range, setRange] = React.useState({ startDate: undefined, endDate: undefined });
@@ -103,7 +105,6 @@ const AbsenceForm = ({ navigation }) => {
           Pick range
         </Button>
         <DatePickerModal 
-             disableStatusBarPadding
              locale='en'
              visible={open}
              onDismiss={onDismiss}
@@ -113,6 +114,37 @@ const AbsenceForm = ({ navigation }) => {
              startYear={2023}
              endYear={2024}
         />
+
+
+        <Text style={styles.label}>Destination (Address, City, State) </Text>
+          <Controller
+            control={control}
+            render={({field: { onChange, onBlur, value }}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                value={value}
+              />
+            )}
+            name="lastName"
+            rules={{ required: true }}
+          />
+
+        <Text style={styles.label}> use a checkbox component here for "whereabouts information" </Text>
+          <Controller
+            control={control}
+            render={({field: { onChange, onBlur, value }}) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={value => onChange(value)}
+                value={value}
+              />
+            )}
+            name="lastName"
+            rules={{ required: true }}
+          />
 
     
           <View style={styles.button}>
