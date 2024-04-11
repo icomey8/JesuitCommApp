@@ -1,18 +1,15 @@
 import React from 'react';
-import {View, StatusBar, Text, StyleSheet, TouchableOpacity} from 'react-native';
-
-//Navigation & Forms import
+import {View, StatusBar, Text, StyleSheet, TouchableOpacity, Pressable} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import * as WebBrowser from 'expo-web-browser';
 import {createStackNavigator} from '@react-navigation/stack';
 import AbsenceForm from './AbsenceForm';
-import VillaSignUp from './VillaSignUp';
-import CheckRequest from './CheckRequest';
+
 
 
 
 const Stack = createStackNavigator();
 
-// main home screen
 const MainScreen = ({ navigation }) => {
 
   const navigateToPage = (pageName) => {
@@ -20,58 +17,51 @@ const MainScreen = ({ navigation }) => {
   };
 
   // group of forms
+  // replace TouchableOpacity with Pressable
+
   const FormList = () => {
     return (
       <View style={styles.buttonContainer}> 
 
         <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
+          <Pressable style={styles.button} onPress={() => navigateToPage('Absence-Form')}>  
             <Text> Absence Form </Text>
-          </TouchableOpacity>
-
+          </Pressable>
         </View>
 
-
         <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Villa-Sign-Up-Form')}>
-            <Text> Villa House Sign-up </Text>
+          <TouchableOpacity style={styles.button} onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/spreadsheets/d/1s8UnbW9bBQiayxoTMIkvEXvHISlnacDYQbr5Fxvjl-U/edit#gid=545893366')}>
+            <Text>Car Reservation</Text>
           </TouchableOpacity>
         </View>
 
+        <View style={styles.buttonRow}> 
+          <TouchableOpacity style={styles.button} onPress={() => WebBrowser.openBrowserAsync('https://www.google.com/drive/')}>
+            <Text> Meal Sign-in/Sign-out</Text>
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
+          <TouchableOpacity style={styles.button} onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/spreadsheets/d/1myN7jgf7RHKoyTvU-6uBudOwCyiHtUtU/edit#gid=1518481871')}>
             <Text> Community Room Reservation </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.buttonRow}> 
           <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
-            <Text> Dinner Sign-Out </Text>
+            <Text> Car Service Request </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
-            <Text> Service Request </Text>
+          <TouchableOpacity style={styles.button} onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/spreadsheets/d/12xeGviMBXmZ7iSIxc3IqeNUTcr6BtXEv/edit#gid=1908601915')}>
+            <Text>Personal Expenses Request & Worksheet</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
-            <Text> Personal Expenses Request </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
+          <TouchableOpacity style={styles.button} onPress={() => WebBrowser.openBrowserAsync('https://www.google.com/drive/')}>
             <Text> Automobile Accident Report </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Check-Request-Form')}>
-            <Text> Check Request </Text>
           </TouchableOpacity>
         </View>
 
@@ -83,22 +73,21 @@ const MainScreen = ({ navigation }) => {
   
 return (
   <View style={styles.container}>
-    {/* Your main content goes here */}
     <Text> Hello, welcome to the sign-ups page. </Text>
-
-    {/* Buttons at the bottom */}
     {FormList()}
-
     <StatusBar style="auto" />
   </View>
 );
 };
 
 
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#89f',
+    backgroundColor: '#fff', //89f
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -106,15 +95,13 @@ const styles = StyleSheet.create({
 
   },
   buttonContainer: {
-    //position: 'absolute',
-    //bottom: 0,
     width: '70%',
     flexDirection: 'column',
     justifyContent: 'flex-end',
     paddingVertical: 20,
     paddingBottom: 50,
     
-    backgroundColor: '#93282a',
+    backgroundColor: '#fff',//'#93282a',
   },
   buttonRow: {
     flexDirection: 'row',
@@ -127,7 +114,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     borderWidth: 2, 
-    borderColor: '#000',
+    borderColor: '#93282a', ///'#000',
     backgroundColor: '#fff',
   },
 });
@@ -141,8 +128,6 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="Absence-Form" component={AbsenceForm} />
-        <Stack.Screen name="Villa-Sign-Up-Form" component={VillaSignUp} />
-        <Stack.Screen name="Check-Request-Form" component={CheckRequest} />
       </Stack.Navigator>
     </NavigationContainer>
   );
