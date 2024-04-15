@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import * as WebBrowser from 'expo-web-browser';
 import {createStackNavigator} from '@react-navigation/stack';
 import AbsenceForm from './AbsenceForm';
+import ConfessionForm from './ConfessionSignUp';
 
 
 
@@ -30,6 +31,12 @@ const MainScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonRow}> 
+          <Pressable style={styles.button} onPress={() => navigateToPage('Confession-Sign-Up')}>  
+            <Text> Confession Sign Up </Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.buttonRow}> 
           <TouchableOpacity style={styles.button} onPress={() => WebBrowser.openBrowserAsync('https://docs.google.com/spreadsheets/d/1s8UnbW9bBQiayxoTMIkvEXvHISlnacDYQbr5Fxvjl-U/edit#gid=545893366')}>
             <Text>Car Reservation</Text>
           </TouchableOpacity>
@@ -48,7 +55,7 @@ const MainScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.buttonRow}> 
-          <TouchableOpacity style={styles.button} onPress={() => navigateToPage('Absence-Form')}>
+          <TouchableOpacity style={styles.button} onPress={() => WebBrowser.openBrowserAsync('https://www.google.com/drive/')}>
             <Text> Car Service Request </Text>
           </TouchableOpacity>
         </View>
@@ -128,6 +135,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="Absence-Form" component={AbsenceForm} />
+        <Stack.Screen name="Confession-Sign-Up" component={ConfessionForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );
